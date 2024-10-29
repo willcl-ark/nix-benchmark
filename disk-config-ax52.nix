@@ -69,6 +69,11 @@
               mountOptions = [
                 "defaults"
               ];
+              # Add these settings to ensure proper filesystem creation
+              extraArgs = [
+                "-F"  # Force creation without confirmation
+                "-L" "root"  # Set filesystem label
+              ];
             };
           };
         };

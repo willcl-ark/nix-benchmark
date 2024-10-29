@@ -89,10 +89,15 @@
     enable = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin = "no";
+      PermitRootLogin = "yes";
       AllowTcpForwarding = "no";
       X11Forwarding = false;
     };
+  };
+
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false; # passwordless sudo
   };
 
   time.timeZone = "UTC";
