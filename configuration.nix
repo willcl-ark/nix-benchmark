@@ -142,7 +142,7 @@
   };
 
   users = {
-    users.will = {
+    users.satoshi = {
       isNormalUser = true;
       # shell = pkgs.fish;
       openssh.authorizedKeys.keys = [

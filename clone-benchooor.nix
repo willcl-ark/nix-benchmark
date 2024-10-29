@@ -14,14 +14,14 @@
 
     serviceConfig = {
       Type = "oneshot";
-      User = "will";
+      User = "satoshi";
       Group = "users";
     };
 
     script = ''
-      if [ ! -d /home/will/src/benchooor ]; then
-        mkdir -p /home/will/src
-        ${pkgs.git}/bin/git clone https://github.com/bitcoin-dev-tools/benchooor.git /home/will/src/benchooor
+      if [ ! -d /home/satoshi/src/benchooor ]; then
+        mkdir -p /home/satoshi/src
+        ${pkgs.git}/bin/git clone https://github.com/bitcoin-dev-tools/benchooor.git /home/satoshi/src/benchooor
       fi
     '';
   };

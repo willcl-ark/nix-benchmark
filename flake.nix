@@ -3,15 +3,10 @@
   inputs.disko.url = "github:nix-community/disko";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs =
-    {
-      nixpkgs,
-      disko,
-      ...
-    }:
-    {
-      # nixos-anywhere --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix <hostname>
-      nixosConfigurations.generic = nixpkgs.lib.nixosSystem {
+  outputs = { nixpkgs, disko, ... }: {
+    nixosConfigurations = {
+      # Generic configuration
+      generic = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
@@ -19,5 +14,16 @@
           ./hardware-configuration.nix
         ];
       };
+
+      # Hetzner AX52 specific configuration
+      ax52 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./configuration.nix
+          ./disk-config-ax52.nix
+        ];
+      };
     };
+  };
 }
