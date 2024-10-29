@@ -25,5 +25,5 @@ $ nix-shell -p nixos-anywhere
 
 ```bash
 $ nix-shell -p nixos-rebuild
-[nix-shell:~]$ nixos-rebuild switch --flake .#ax52 root@<ip_address>
+[nix-shell:~]$ nixos-rebuild switch --flake .#ax52 --target-host root@<ip_address>
 ```

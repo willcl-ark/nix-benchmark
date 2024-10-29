@@ -3,6 +3,9 @@
 , pkgs
 , ...
 }:
+let
+  ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH988C5DbEPHfoCphoW23MWq9M6fmA4UTXREiZU0J7n0 will.hetzner@temp.com";
+in
 {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
@@ -36,6 +39,7 @@
     gcc13
     gdb
     git
+    gnumake
     hdparm # Disk performance measurement
     htop
     hyperfine
@@ -132,11 +136,16 @@
   };
 
   users = {
+    users.root = {
+      openssh.authorizedKeys.keys = [
+        ssh_key
+      ];
+    };
+
     users.satoshi = {
       isNormalUser = true;
-      # shell = pkgs.fish;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH988C5DbEPHfoCphoW23MWq9M6fmA4UTXREiZU0J7n0 will.hetzner@temp.com"
+        ssh_key
       ];
       extraGroups = [ "wheel" ]; # For sudo access
     };
