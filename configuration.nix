@@ -17,7 +17,6 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  services.openssh.enable = true;
 
   environment.systemPackages = with pkgs; [
     bat
@@ -34,7 +33,7 @@
     fastfetch
     fd
     fish
-    flamgraph
+    flamegraph
     gcc13
     gdb
     git
@@ -87,12 +86,13 @@
   };
 
   # Security hardening
-  security = {
-    # Harden SSH configuration
-    ssh = {
-      allowSFTP = true;
-      passwordAuthentication = false;
-      permitRootLogin = "no";
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+      AllowTcpForwarding = "no";
+      X11Forwarding = false;
     };
   };
 
@@ -124,19 +124,6 @@
     fstrim = {
       enable = true;
       interval = "weekly";
-    };
-
-    # Enable collectd for system statistics
-    collectd = {
-      enable = true;
-      autoLoadPlugin = true;
-      plugins = {
-        cpu = true;
-        load = true;
-        memory = true;
-        disk = true;
-        interface = true;
-      };
     };
   };
 
