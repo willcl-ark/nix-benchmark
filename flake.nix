@@ -4,6 +4,7 @@
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = { nixpkgs, disko, ... }: {
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     nixosConfigurations = {
       # Generic configuration
       generic = nixpkgs.lib.nixosSystem {

@@ -1,8 +1,7 @@
-{
-  modulesPath,
-  lib,
-  pkgs,
-  ...
+{ modulesPath
+, lib
+, pkgs
+, ...
 }:
 {
   imports = [
@@ -39,35 +38,35 @@
     gcc13
     gdb
     git
-    hdparm              # Disk performance measurement
+    hdparm # Disk performance measurement
     htop
     hyperfine
     just
-    kernelshark         # Kernel trace visualization
+    kernelshark # Kernel trace visualization
     libevent
     libsystemtap
     linuxKernel.packages.linux_6_6.systemtap
-    linuxPackages.perf  # Kernel perf events
+    linuxPackages.perf # Kernel perf events
     llvm_18
     lmdb
-    lshw                # Hardware configuration info
+    lshw # Hardware configuration info
     magic-wormhole
     mosh
     neovim
     ninja
     perf-tools
     pkg-config
-    procps              # System and process monitoring
+    procps # System and process monitoring
     python310
     ripgrep
     rocksdb
     rustup
     sqlite
     strace
-    sysstat             # System performance tools (sar, iostat, etc)
+    sysstat # System performance tools (sar, iostat, etc)
     time
     tmux
-    trace-cmd           # Kernel trace utility
+    trace-cmd # Kernel trace utility
     uv
     valgrind
   ];
