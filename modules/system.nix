@@ -33,9 +33,9 @@
       PAGER = "less";
     };
 
-    interactiveShellInit = ''
-      eval "$(direnv hook bash)"
-    '';
+    # interactiveShellInit = ''
+    #   eval "$(direnv hook bash)"
+    # '';
   };
 
   system.stateVersion = "unstable";

@@ -29,16 +29,13 @@
     # Shell utilities
     bat
     curl
-    direnv
     eza
     fd
     just
     mosh
     neovim
     ripgrep
-    starship
     tmux
-    zoxide
 
     # Database
     lmdb
@@ -53,25 +50,4 @@
     magic-wormhole
     time
   ];
-
-  programs.direnv = {
-    package = pkgs.direnv;
-    silent = false;
-    loadInNixShell = true;
-    direnvrcExtra = "";
-    nix-direnv = {
-      enable = true;
-      package = pkgs.nix-direnv;
-    };
-  };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      directory.truncation_length = 2;
-      gcloud.disabled = true;
-      memory_usage.disabled = true;
-      shlvl.disabled = false;
-    };
-  };
 }
