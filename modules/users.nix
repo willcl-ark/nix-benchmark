@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 let
   ssh_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH988C5DbEPHfoCphoW23MWq9M6fmA4UTXREiZU0J7n0 will.hetzner@temp.com";
+  justfile = builtins.path {
+    name = "justfile";
+    path = ./justfile;
+  };
 in
 {
   users = {
@@ -32,6 +36,10 @@ in
       ll = "eza -al";
       ".." = "cd ..";
     };
+
+    # Create src/core directory and copy justfile
+    home.file."src/core/.keep".text = "";
+    home.file."src/core/justfile".source = justfile;
 
     programs.bash.enable = true;
     programs.bash.bashrcExtra = ''
