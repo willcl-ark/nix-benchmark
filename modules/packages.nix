@@ -4,6 +4,7 @@
     # Development tools
     cargo
     git
+    gh
     ninja
     pkg-config
     python310
