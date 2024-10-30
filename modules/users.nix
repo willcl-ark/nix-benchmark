@@ -30,28 +30,26 @@ in
       vim = "nvim";
       ls = "eza";
       ll = "eza -al";
+      ".." = "cd ..";
     };
 
     programs.bash.enable = true;
-    # Add to .bashrc
     programs.bash.bashrcExtra = ''
-      eval "$(direnv hook bash)"
-      eval "$(zoxide init bash)"
-
-      # FZF
-      if command -v fzf-share >/dev/null; then
-        source "$(fzf-share)/key-bindings.bash"
-        source "$(fzf-share)/completion.bash"
-      fi
     '';
 
     programs.direnv = {
+      enable = true;
       enableBashIntegration = true;
       package = pkgs.direnv;
       nix-direnv = {
         enable = true;
         package = pkgs.nix-direnv;
       };
+    };
+
+    programs.fzf = {
+      enable = true;
+      enableBashIntegration = true;
     };
 
     programs.starship = {
@@ -62,6 +60,11 @@ in
         memory_usage.disabled = true;
         shlvl.disabled = false;
       };
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableBashIntegration = true;
     };
 
     # Have home-manager manage itself
