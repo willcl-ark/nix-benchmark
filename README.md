@@ -10,7 +10,7 @@ This example will use a Hetzner AX52 as target, which comes with 2 SSDs located 
 1. Update the SSH key in *modules/users.nix* `ssh_key` to one of your own.
 2. Stage or commit the modification using `git` to include the modification in the build:
     ```bash
-    git add configuration.nix
+    git add modules/users.nix
     git commit -m "update ssh key" # (optional)
     ```
 
