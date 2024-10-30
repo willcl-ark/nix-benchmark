@@ -19,9 +19,11 @@
     };
 
     script = ''
-      if [ ! -d /home/satoshi/src/bitcoin ]; then
-        mkdir -p /home/satoshi/src
-        ${pkgs.git}/bin/git clone https://github.com/bitcoin/bitcoin.git /home/satoshi/src/bitcoin
+      if [ ! -d /home/satoshi/src/core/bitcoin ]; then
+        mkdir -p /home/satoshi/src/core/bitcoin
+        echo "use nix" >> /home/satoshi/src/core/.envrc
+        ${pkgs.git}/bin/git clone https://github.com/bitcoin/bitcoin.git /home/satoshi/src/core/bitcoin
+        ${pkgs.curl}/bin/curl -L https://raw.githubusercontent.com/0xB10C/nix-bitcoin-core/refs/heads/master/shell.nix -o /home/satoshi/src/core/shell.nix
       fi
     '';
   };

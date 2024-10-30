@@ -23,39 +23,26 @@ in
   environment.systemPackages = with pkgs; [
     bash
     bat
-    binutils
-    bison
-    boost
     btop
     cargo
     ccache
-    cmake
-    coreutils
     curl
     direnv
     eza
     fastfetch
     fd
-    findutils
     fish
     flamegraph
-    gcc13
     gdb
     git
-    gnugrep
-    gnumake
-    gnused
     hdparm # Disk performance measurement
     hexdump
     htop
     hyperfine
     just
     kernelshark # Kernel trace visualization
-    libevent
-    libsystemtap
     linuxKernel.packages.linux_6_6.systemtap
     linuxPackages.perf # Kernel perf events
-    llvm_18
     lmdb
     lshw # Hardware configuration info
     magic-wormhole
@@ -66,16 +53,10 @@ in
     pkg-config
     procps # System and process monitoring
     python310
-    python3Packages.flake8
-    python3Packages.lief
-    python3Packages.autopep8
-    python3Packages.mypy
-    python3Packages.requests
-    python3Packages.pyperf
-    python3Packages.pyzmq
     ripgrep
     rocksdb
     rustup
+    starship
     sqlite
     strace
     sysstat # System performance tools (sar, iostat, etc)
@@ -83,9 +64,28 @@ in
     tmux
     trace-cmd # Kernel trace utility
     uv
-    valgrind
-    zeromq
   ];
+
+  programs.direnv = {
+    package = pkgs.direnv;
+    silent = false;
+    loadInNixShell = true;
+    direnvrcExtra = "";
+    nix-direnv = {
+      enable = true;
+      package = pkgs.nix-direnv;
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      directory.truncation_length = 2;
+      gcloud.disabled = true;
+      memory_usage.disabled = true; # because it includes cached memory it's reported as full a lot
+      shlvl.disabled = false;
+    };
+  };
 
   environment.variables = {
     EDITOR = "nvim";
@@ -120,11 +120,17 @@ in
 
   time.timeZone = "UTC";
 
-  # Automatic garbage collection
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+  nix = {
+    # Automatic garbage collection
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+    };
   };
 
   # Better system monitoring
@@ -149,6 +155,10 @@ in
     };
   };
 
+  environment.interactiveShellInit = ''
+    eval "$(direnv hook bash)"
+  '';
+
   users = {
     users.root = {
       openssh.authorizedKeys.keys = [
@@ -162,6 +172,7 @@ in
         ssh_key
       ];
       extraGroups = [ "wheel" ]; # For sudo access
+      home = "/home/satoshi";
     };
   };
 
