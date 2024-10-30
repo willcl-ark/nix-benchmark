@@ -22,7 +22,7 @@
         modules = [
           disko.nixosModules.disko
           ./configuration.nix
-          ./disk-config-ax52.nix
+          ./disks/disk-config-ax52.nix
           ./nix-channel-setup.nix
         ];
       };

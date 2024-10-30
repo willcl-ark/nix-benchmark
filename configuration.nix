@@ -7,8 +7,8 @@
     ./modules/security.nix
     ./modules/packages.nix
     ./modules/system.nix
-    ./clone-bitcoin.nix
-    ./clone-benchooor.nix
+    ./repos/clone-bitcoin.nix
+    ./repos/clone-benchooor.nix
   ];
 
   boot.loader.grub = {
