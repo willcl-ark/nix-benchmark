@@ -64,6 +64,7 @@ in
     tmux
     trace-cmd # Kernel trace utility
     uv
+    zoxide
   ];
 
   programs.direnv = {
