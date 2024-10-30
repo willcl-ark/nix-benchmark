@@ -38,6 +38,7 @@
     ripgrep
     starship
     tmux
+    zoxide
 
     # Database
     lmdb
