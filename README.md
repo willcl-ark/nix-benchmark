@@ -2,8 +2,8 @@
 
 ## Deploy
 
-To deploy to a server, either select and existing *disk-config*.nix*, or create a new one tailored to the target host.
-This example will use a Hetzner AX52 as target, which comes with 2 SSDs located at /dev/nvme1n1* and */dev/nvme0n1*.
+To deploy to a server, either select and existing *disk-config\*.nix*, or create a new one tailored to the target host.
+This example will use a Hetzner AX52 as target, which comes with 2 SSDs located at */dev/nvme1n1* and */dev/nvme0n1*.
 
 ### Update SSH key
 
